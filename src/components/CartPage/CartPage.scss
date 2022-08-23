@@ -1,0 +1,99 @@
+.props-wrapper{
+  background-color: white;
+  height:100%;
+  width: 100%;
+  display: table-column;
+  flex-direction: column;
+  box-shadow: 0px 0px 20px 0px #c9bebe;
+}
+.props-img{
+  height: 320px;
+  border-radius: 0px;
+  left: 0px;
+  padding: 15px;
+}
+.props-line{
+  position: absolute;
+  width: 1240px;
+  height: 1px;
+  left: 100px;
+  top: 255px;
+
+  background: #E5E5E5;
+}
+.props-header{
+  margin-top: 0px;
+  padding: 10px;
+}
+.props-wrapper{
+  display: flex;
+  overflow:hidden;
+
+}
+.scroller{
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  height: 50%;
+  width: 100%;
+
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+h4{
+  width: 300px;
+
+}
+.props-items{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 390px;
+  width: 1000px;
+  padding-bottom:20px ;
+  border-bottom: ridge;
+
+}
+.props-item{
+  align-items: normal;
+}
+.props-sizes{
+  background-color: unset;
+  font-weight: 100;
+  font-size: 10px;
+  line-height: 120%;
+  width: 28px;
+  height: 28px;
+  margin: 5px;
+}
+.props-sizes:focus{
+  background-color: black;
+  color: white;
+}
+.props-colors{
+  font-weight: 100;
+  font-size: 10px;
+  line-height: 120%;
+  width: 28px;
+  height: 28px;
+  margin: 5px;
+  border: unset;
+}
+.props-colors:focus{
+  border: solid 1.5px ;
+  border-color: #5ECE7B;
+  border-spacing: 2px;
+}
+.line{
+  display: flex;
+}
+.cart-order{
+  width: 279px;
+  height: 43px;
+  background: #5ECE7B;
+  border: none;
+  color: white;
+  margin-bottom: 70px;
+}
+.total-quantity{
+  padding: 20px;
+}

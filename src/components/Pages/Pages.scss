@@ -1,0 +1,40 @@
+.tech-pic{
+  width: 350px;
+}
+.tech-pic-out{
+  width: 350px;
+  opacity: 40%;
+}
+.test56{
+  font-size: 20px;
+  align-items: center;
+  color: #8D8F9A;
+}
+.product-list{
+  display: grid;
+  column-gap: 50px;
+  row-gap: 69px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+.product{
+  >button{
+    background-color: unset;
+    border: unset;
+    float: right;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+  width: 386px;
+  height: 524px;
+  padding: 10px;
+}
+.product:hover{
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+  border-radius: 5px;
+  display: block;
+}
+.logo{
+  float: right;
+}
+
