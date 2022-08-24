@@ -35,9 +35,11 @@ class Product extends React.Component{
                     {this.props.el.category==='clothes'&&
                         <div>
                             <h4>Size :</h4>
-                            <button className='cart-sizes'>{JSON.parse(window.sessionStorage.getItem(this.props.el.name))}</button>
+                            <div className='cart-sizes'><h1>{JSON.parse(window.sessionStorage
+                                .getItem(this.props.el.name))}</h1></div>
                             <h4>Color : </h4>
-                            <button style={{backgroundColor:JSON.parse(window.sessionStorage.getItem(this.props.el.id))}} className='cart-colors'></button>
+                            <div style={{backgroundColor:JSON.parse(window.sessionStorage
+                                .getItem(this.props.el.id))}} className='cart-colors'></div>
                         </div>}
                         {/*{this.props.el.category==='clothes'&& <div><h4>Size :</h4>*/}
                     {/*    {this.state.SizesButtons.map(el=>(*/}

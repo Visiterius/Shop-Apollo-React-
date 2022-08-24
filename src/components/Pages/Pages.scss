@@ -1,15 +1,28 @@
 .tech-pic{
+  height: auto;
   width: 350px;
 }
-.tech-pic-out{
-  width: 350px;
-  opacity: 40%;
+.figure{
+  //position:relative;
+  //text-align:center; // doesn't work as desired
+  &__img{
+    width: 350px;
+    opacity: 40%;
+    //position:relative;
+    //text-align:center;
+  }
+  &__text{
+    font-size: 20px;
+    align-items: center;
+    color: #8D8F9A;
+    position:relative;
+    //top:30px;
+    right: 230px;
+    white-space: nowrap;
+  }
+
 }
-.test56{
-  font-size: 20px;
-  align-items: center;
-  color: #8D8F9A;
-}
+
 .product-list{
   display: grid;
   column-gap: 50px;
@@ -32,9 +45,40 @@
 .product:hover{
   box-shadow: 0 0 11px rgba(33,33,33,.2);
   border-radius: 5px;
+}
+.product:hover + .logo{
   display: block;
 }
 .logo{
   float: right;
+  right: 60px;
+  bottom: 130px;
+  position: relative;
+  display: none;
+  animation: createLogo .25s;
 }
+
+.logo:hover{
+  display: block;
+}
+@keyframes createLogo {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.page-wrapper{
+  display: block;
+  height: 597px;
+  width: 407px;
+}
+.figure{
+  display: flex;
+  align-items: center;
+  z-index: 5;
+}
+
+
 

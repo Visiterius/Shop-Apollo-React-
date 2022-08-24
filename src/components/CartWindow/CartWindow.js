@@ -16,7 +16,6 @@ class CartWindow extends React.Component{
             SizesButtons:['XS','S','M','L'],
             ColorsButton:['#D3D2D5','#2B2B2B','#0F6450']
         }
-        // this.QuantityHandleCart=this.QuantityHandleCart.bind(this)
     }
 
     CartHandleClick(){

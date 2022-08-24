@@ -1,6 +1,6 @@
 import React from "react";
 import './Pages.scss'
-import logo from "../Category/images/icon-cart.svg";
+import IconCart from "../Category/images/icon-cart.svg";
 import ProductPage from "../ProductPage/ProductPage";
 import CartWindow from "../CartWindow/CartWindow";
 
@@ -18,30 +18,25 @@ class Pages extends React.Component{
                <div>
                     <div className='product-list'>
                         {this.state.ProductState===null&&this.props.data.categories
-                            [this.props.switch.ClothesClicked ? 1 : 2].products.map(el=>(
-                                <div>
+                            [this.props.switch.AllClicked?0:this.props.switch.ClothesClicked?1:2].products.map(el=>(
+                                <div className='page-wrapper'>
                                     <div onClick={()=>this.setState({ProductState:el})} key={el.id} className='product'>
 
                                         {el.inStock?
                                             <img className='tech-pic' src={el.gallery[0]} alt='photo'/>
                                             :
-                                            <figure>
-                                                <figcaption className='test56'>OUT OF STOCK</figcaption>
-                                                <img className='tech-pic-out' src={el.gallery[0]} alt='photo'/>
-                                            </figure>}
-
-
-
+                                            <div className='figure'>
+                                                <img className='figure__img' src={el.gallery[0]} alt='photo'/>
+                                                <div className='figure__text'>OUT OF STOCK</div>
+                                            </div>}
                                         <h2>{el.name}</h2>
                                         <h3>{el.prices[this.props.CurrencyIndex].currency.symbol
                                             +
                                             el.prices[this.props.CurrencyIndex].amount}</h3>
                                     </div>
-                                    <div className='logo' onClick={()=>window.localStorage
-                                        .setItem(el.id,JSON
-                                            .stringify(el))}>
-                                        <img src={logo} alt='logo'/>
-                                    </div>
+                                        <img className='logo' onClick={()=>window.localStorage
+                                            .setItem(el.id,JSON
+                                                .stringify(el))} src={IconCart} alt='logo'/>
                                 </div>
                             ))}
                     </div>
