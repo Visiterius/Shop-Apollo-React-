@@ -11,16 +11,17 @@ class Pages extends React.Component{
             ProductState:null,
         }
     }
-
-
+    refresh = () => {
+        this.setState({});
+    }
     render() {
         return(
                <div>
                     <div className='product-list'>
                         {this.state.ProductState===null&&this.props.data.categories
                             [this.props.switch.AllClicked?0:this.props.switch.ClothesClicked?1:2].products.map(el=>(
-                                <div className='page-wrapper'>
-                                    <div onClick={()=>this.setState({ProductState:el})} key={el.id} className='product'>
+                                <div className='page-wrapper' key={el.id} >
+                                    <div onClick={()=>this.setState({ProductState:el})} className='product'>
 
                                         {el.inStock?
                                             <img className='tech-pic' src={el.gallery[0]} alt='photo'/>
@@ -29,21 +30,28 @@ class Pages extends React.Component{
                                                 <img className='figure__img' src={el.gallery[0]} alt='photo'/>
                                                 <div className='figure__text'>OUT OF STOCK</div>
                                             </div>}
+
                                         <h2>{el.name}</h2>
                                         <h3>{el.prices[this.props.CurrencyIndex].currency.symbol
                                             +
                                             el.prices[this.props.CurrencyIndex].amount}</h3>
                                     </div>
-                                        <img className='logo' onClick={()=>window.localStorage
-                                            .setItem(el.id,JSON
-                                                .stringify(el))} src={IconCart} alt='logo'/>
+                                        <img className='logo' onClick={()=> {
+                                            window.localStorage
+                                                .setItem(el.id, JSON
+                                                    .stringify(el));
+                                            this.props.update()
+                                        }} src={IconCart} alt='logo'/>
                                 </div>
                             ))}
                     </div>
-                   {this.state.ProductState!==null && <ProductPage CurrencyIndex={this.props.CurrencyIndex}
+                   {this.state.ProductState!==null && <ProductPage update={this.props.update}
+                                                                   CurrencyIndex={this.props.CurrencyIndex}
                                                                    switch={this.props.switch.CartClicked}
                                                                    data={this.state.ProductState}/>}
+
                    {this.props.handle ? this.state.ProductState=null:null}
+
                    {this.props.switch.CartClicked && <CartWindow CurrencyIndex={this.props.CurrencyIndex}
                                                                  data={this.props.data}/>}
                 </div>

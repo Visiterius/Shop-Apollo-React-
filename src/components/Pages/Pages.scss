@@ -3,20 +3,15 @@
   width: 350px;
 }
 .figure{
-  //position:relative;
-  //text-align:center; // doesn't work as desired
   &__img{
     width: 350px;
     opacity: 40%;
-    //position:relative;
-    //text-align:center;
   }
   &__text{
     font-size: 20px;
     align-items: center;
     color: #8D8F9A;
     position:relative;
-    //top:30px;
     right: 230px;
     white-space: nowrap;
   }
@@ -60,6 +55,7 @@
 
 .logo:hover{
   display: block;
+  cursor: pointer;
 }
 @keyframes createLogo {
   from {

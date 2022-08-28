@@ -26,9 +26,8 @@ class CartWindow extends React.Component{
         })
     }
 
-
-
     render(){
+
         return(
             <div className='overlay'>
                 {this.state.CartClicked
@@ -40,6 +39,7 @@ class CartWindow extends React.Component{
                     :
                     <div className='my-bag'>
                     <h2 className='bag-header'>My Bag, {this.state.items.length} items</h2>
+
                     <div className='cart-wrapper'>
                         <div className='hidden-scroll'>
                             {this.state.items.map(el=>JSON.parse(el)).map(el=>(
