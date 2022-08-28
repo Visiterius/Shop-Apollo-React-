@@ -38,7 +38,8 @@ class ProductPage extends React.Component{
                         <img className='main-image' src={this.state.PreviewState} alt="main"/>
                         <div className="options">
                             <h1>{this.props.data.name}</h1>
-                            <div className='options__description' dangerouslySetInnerHTML={{__html:this.props.data.description}}/>
+                            <div className='options__description'
+                                 dangerouslySetInnerHTML={{__html:this.props.data.description}}/>
                             <div className='wrap-size'>
                                 {this.props.data.category==='clothes'&&
                                     <div>
@@ -58,13 +59,20 @@ class ProductPage extends React.Component{
                                     +
                                     this.props.data.prices[this.props.CurrencyIndex].amount}</h3>
                             </div>
-                            {this.props.data.category==='clothes'?this.state.ColorPick&&this.state.SizePick&&<button
-                                onClick={()=>window.localStorage.setItem(this.props.data.id,JSON
-                                .stringify(this.props.data))} className='add-to-cart'>
+                            {this.props.data.category==='clothes'?this.state.ColorPick&&this.state.SizePick&&
+                                <button
+                                onClick={()=> {
+                                    window.localStorage.setItem(this.props.data.id, JSON
+                                        .stringify(this.props.data));this.props.update()
+                                }} className='add-to-cart'>
                                 ADD TO CART
-                            </button>:<button
-                                onClick={()=>window.localStorage.setItem(this.props.data.id,JSON
-                                    .stringify(this.props.data))} className='add-to-cart'>
+                            </button>
+                                :
+                                <button
+                                onClick={()=> {
+                                    window.localStorage.setItem(this.props.data.id, JSON
+                                        .stringify(this.props.data));this.props.update()
+                                }} className='add-to-cart'>
                                 ADD TO CART
                             </button>}
                         </div>

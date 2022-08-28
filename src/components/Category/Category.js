@@ -8,6 +8,7 @@ class Category extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            update:false,
             AllClicked:false,
             CurrencyIndex:0,
             CurrencyClicked:false,
@@ -23,6 +24,7 @@ class Category extends React.Component {
         this.ProductHandleClick = this.ProductHandleClick.bind(this)
         this.CartHandleClick = this.CartHandleClick.bind(this)
         this.AllHandleClick = this.AllHandleClick.bind(this)
+        this.HandleUpdate = this.HandleUpdate.bind(this)
     }
 
     TechHandleClick(){
@@ -86,7 +88,13 @@ class Category extends React.Component {
         })
     }
 
-
+    HandleUpdate(){
+        this.setState(prev=>{
+            return {
+                update:!prev
+            }
+        })
+    }
 
     render() {
         return (
@@ -95,10 +103,10 @@ class Category extends React.Component {
                     <div className='header__btns'>
                         <button className='header__btns__tech' onClick={this.TechHandleClick}>TECH</button>
                         <button className='header__btns__clothes' onClick={this.ClothesHandleClick}>CLOTHES</button>
-                        <button className='header__btns__clothes' onClick={this.AllHandleClick}>All</button>
+                        <button className='header__btns__tech' onClick={this.AllHandleClick}>All</button>
                     </div>
 
-                    <img className='header__logo' src={image} alt='header-logo'/>
+                    <img className='header__logo' src={image} alt='logo'/>
 
                     <div className='header__cart-currency'>
                         <div onClick={this.CurrHandleClick} className='currency'>
@@ -118,10 +126,15 @@ class Category extends React.Component {
                                 }
                             </div>
                         }
-                            <img onClick={this.CartHandleClick} className='cart' src={cart} alt='cart'/>
+                        <div className='quantity-items'>
+                            <div className='quantity-items__circle'>{localStorage.length}</div>
+                            <img onClick={localStorage.length>0&&this.CartHandleClick} className='cart' src={cart} alt='cart'/>
+                            {this.state.update&&this.render()}
+                        </div>
                     </div>
                 </div>
-                {<Pages switch={this.state}
+                {<Pages update={this.HandleUpdate}
+                    switch={this.state}
                         data={this.props.data}
                         CurrencyIndex={this.state.CurrencyIndex}
                         handle={this.state.ProductClicked ? this.ClothesHandleClick : this.TechHandleClick}/>}

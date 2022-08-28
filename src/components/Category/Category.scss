@@ -51,5 +51,20 @@
   background-color:#EEEEEE;
 ;
 }
+.quantity-items{
+  text-align: -webkit-right;
+  width: 63px;
+  &__circle{
+    background-color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    color: white;
+    display: table-caption;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+  }
+}
 
 

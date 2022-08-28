@@ -107,6 +107,7 @@
 }
 .cart-btns{
   display: flex;
+  place-content: space-around;
 }
 .quantity>button{
   height: 22px;
