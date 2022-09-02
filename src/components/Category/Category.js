@@ -134,7 +134,7 @@ class Category extends React.Component {
                     </div>
                 </div>
                 {<Pages update={this.HandleUpdate}
-                    switch={this.state}
+                        switch={this.state}
                         data={this.props.data}
                         CurrencyIndex={this.state.CurrencyIndex}
                         handle={this.state.ProductClicked ? this.ClothesHandleClick : this.TechHandleClick}/>}

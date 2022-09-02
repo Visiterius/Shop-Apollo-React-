@@ -4,6 +4,7 @@ import IconCart from "../Category/images/icon-cart.svg";
 import ProductPage from "../ProductPage/ProductPage";
 import CartWindow from "../CartWindow/CartWindow";
 
+
 class Pages extends React.Component{
     constructor(props) {
         super(props);
@@ -36,12 +37,12 @@ class Pages extends React.Component{
                                             +
                                             el.prices[this.props.CurrencyIndex].amount}</h3>
                                     </div>
-                                        <img className='logo' onClick={()=> {
-                                            window.localStorage
-                                                .setItem(el.id, JSON
-                                                    .stringify(el));
-                                            this.props.update()
-                                        }} src={IconCart} alt='logo'/>
+                                    {JSON.stringify(el.attributes) === '[]' && <img className='logo' onClick={() => {
+                                        window.localStorage
+                                            .setItem(el.id, JSON
+                                                .stringify(el));
+                                        this.props.update()
+                                    }} src={IconCart} alt='logo'/>}
                                 </div>
                             ))}
                     </div>

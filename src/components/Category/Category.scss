@@ -5,6 +5,8 @@
  &__cart-currency{
    display: flex;
    align-items: baseline;
+   padding-right: 30px;
+
    .cart{
      padding-right: 50px;
      padding-left: 20px;
@@ -31,7 +33,7 @@
   width: 50px;
 }
 .currency-window{
-  box-shadow: 0px 0px 20px 0px #c9bebe;
+  box-shadow: 0px 2px 6px -1px #c9bebe;
   position: absolute;
   width: 114px;
   height: 222px;
@@ -47,7 +49,7 @@
   border: none;
   font-size: x-large;
 }
-#curr-btns:focus{
+#curr-btns:hover{
   background-color:#EEEEEE;
 ;
 }

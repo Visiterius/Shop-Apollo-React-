@@ -46,10 +46,14 @@
 }
 .cart-img{
   height: 117px;
-
+}
+.img-wrap{
+  height: 100px;
+  width: 100px;
+  display: flex;
 }
 .cart-wrapper{
- display: block;
+  display: block;
   overflow:hidden;
 }
 .hidden-scroll{
@@ -57,6 +61,7 @@
   scroll-behavior: smooth;
   width: 110%;
   height: 570px;
+  overscroll-behavior: contain;
 }
 .items-order{
   h4>{
@@ -120,6 +125,10 @@
   display: grid;
   width: 22px;
   height: 105px;
-
+  padding-right: 23px;
+  text-align: center;
+}
+.quant-wrap{
+  width: 170px;
 }
 

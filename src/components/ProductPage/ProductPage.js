@@ -8,10 +8,9 @@ class ProductPage extends React.Component{
             SizePick:false,
             ColorPick:false,
             PreviewState:this.props.data.gallery[0],
-            SizesButtons:['XS','S','M','L'],
-            ColorsButton:['#D3D2D5','#2B2B2B','#0F6450']
         }
     }
+
     SetColorSession(el){
         window.sessionStorage.setItem(this.props.data.id,JSON.stringify(el))
         this.setState({ColorPick:true})
@@ -41,40 +40,47 @@ class ProductPage extends React.Component{
                             <div className='options__description'
                                  dangerouslySetInnerHTML={{__html:this.props.data.description}}/>
                             <div className='wrap-size'>
-                                {this.props.data.category==='clothes'&&
-                                    <div>
-                                        <h4>SIZE :</h4>
-                                        {this.state.SizesButtons.map((el,index)=>(
+
+                                {JSON.stringify(this.props.data.attributes)!=='[]'&&<div>
+
+                                    {this.props.data.attributes[0].id==='Size'&&
+                                     this.props.data.attributes[0].items.map(el=>el.value).map((el,index)=>(
                                             <button onClick={()=>this.SetSizeSession(el)} key={index}
                                                     className='options__sizes'>{el}</button>))}
 
-                                        <h4>COLOR :</h4>
-                                        {this.state.ColorsButton.map((el,index)=>(
-                                        <button onClick={()=>this.SetColorSession(el)} key={index}
-                                                style={{backgroundColor:el}} className='options__colors'/>))}
-                                    </div>
-                                }
+                                    {this.props.data.attributes[0].id==='Color'&&
+                                     this.props.data.attributes[0].items.map(el=>el.value).map((el,index)=>(
+                                            <button onClick={()=>this.SetColorSession(el)} key={index}
+                                                    style={{backgroundColor:el}} className='options__colors'/>))}
+
+                                    {this.props.data.attributes[0].id==='Capacity'&&
+                                        this.props.data.attributes[0].items.map(el=>el.value).map((el,index)=>(
+                                            <button onClick={()=>this.SetSizeSession(el)} key={index}
+                                                    className='options__sizes'>{el}</button>))}
+                                </div>}
+
+
                                 <h4>PRICE :</h4>
                                 <h3>{this.props.data.prices[this.props.CurrencyIndex].currency.symbol
                                     +
                                     this.props.data.prices[this.props.CurrencyIndex].amount}</h3>
                             </div>
-                            {this.props.data.category==='clothes'?this.state.ColorPick&&this.state.SizePick&&
-                                <button
-                                onClick={()=> {
-                                    window.localStorage.setItem(this.props.data.id, JSON
-                                        .stringify(this.props.data));this.props.update()
-                                }} className='add-to-cart'>
-                                ADD TO CART
-                            </button>
-                                :
-                                <button
-                                onClick={()=> {
-                                    window.localStorage.setItem(this.props.data.id, JSON
-                                        .stringify(this.props.data));this.props.update()
-                                }} className='add-to-cart'>
-                                ADD TO CART
-                            </button>}
+                            {(() => {
+                                switch(true) {
+                                    case this.state.ColorPick:
+                                    case this.state.SizePick:
+                                    case JSON.stringify(this.props.data.attributes)==='[]':
+                                    case JSON.stringify(this.props.data.attributes)!=='[]'
+                                    &&this.props.data.attributes[0].id==='Capacity':
+                                     return   <button
+                                                onClick={()=> {
+                                                window.localStorage.setItem(this.props.data.id, JSON
+                                                    .stringify(this.props.data));this.props.update()
+                                                    }} className='add-to-cart'>
+                                                        ADD TO CART
+                                              </button>
+                                    }
+                            })()}
                         </div>
                 </div>
             </div>
