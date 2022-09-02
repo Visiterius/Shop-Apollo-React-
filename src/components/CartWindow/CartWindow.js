@@ -7,15 +7,15 @@ class CartWindow extends React.Component{
     constructor(props) {
         super(props);
         this.state={
+            QuantityClicker:[1],
             CartClicked:false,
             items:this.props.data.categories[0].products
                 .map(el=>el.id)
                 .map(el=>localStorage
                 .getItem(el))
                 .filter(el=>el!==null),
-            SizesButtons:['XS','S','M','L'],
-            ColorsButton:['#D3D2D5','#2B2B2B','#0F6450']
         }
+        this.handleQuantityChange=this.handleQuantityChange.bind(this)
     }
 
     CartHandleClick(){
@@ -26,15 +26,20 @@ class CartWindow extends React.Component{
         })
     }
 
-    render(){
+    handleQuantityChange=(quantity)=>{
+        this.setState({
+            QuantityClicker:[...this.state.QuantityClicker,quantity]
+        })
+    }
 
+    render(){
         return(
             <div className='overlay'>
                 {this.state.CartClicked
                     ?
-                    <CartPage CurrencyIndex={this.props.CurrencyIndex}
-                              sizeBtn={this.state.SizesButtons}
-                              colorBtn={this.state.ColorsButton}
+                    <CartPage handleQuantityChange={this.handleQuantityChange}
+                              QuantityClicker={this.state.QuantityClicker}
+                              CurrencyIndex={this.props.CurrencyIndex}
                               data={this.state.items}/>
                     :
                     <div className='my-bag'>
@@ -43,24 +48,26 @@ class CartWindow extends React.Component{
                     <div className='cart-wrapper'>
                         <div className='hidden-scroll'>
                             {this.state.items.map(el=>JSON.parse(el)).map(el=>(
-                                <Product CurrencyIndex={this.props.CurrencyIndex} key={el.id} el={el}/>
+                                <Product handleQuantityChange={this.handleQuantityChange}
+                                         CurrencyIndex={this.props.CurrencyIndex} key={el.id} el={el}/>
                             ))}
                         </div>
                     </div>
                     <div className='container-total'>
                         <h2 className='total'>Total</h2>
                             <h2 className='total-amount'>{JSON.parse(this.state.items[0])
-                                .prices[this.props.CurrencyIndex].currency.symbol} {Math.round(this.state.items
+                                .prices[this.props.CurrencyIndex].currency.symbol} {(this.state.items
                                 .map(el=>JSON.parse(el))
                                 .map(el=>el.prices[this.props.CurrencyIndex].amount)
-                                .reduce((a,b)=>a+b))}
+                                .reduce((a,b)=>a+b)+this.state.QuantityClicker
+                                .reduce((a,b)=>a+b)-1)
+                                .toFixed(2)}
                             </h2>
                     </div>
                     <div className='cart-btns'>
                         <button onClick={()=>this.CartHandleClick()} className='view-bag'>VIEW BAG</button>
                         <button className='checkout'>CHECK OUT</button>
                     </div>
-
                 </div>}
             </div>
         )

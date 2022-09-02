@@ -23,6 +23,12 @@ const GET_LOCATIONS = gql`
                         symbol
                     }
                 }
+                attributes{
+                    id
+                    items{
+                        value
+                    }
+                }
             }
         }
     }
