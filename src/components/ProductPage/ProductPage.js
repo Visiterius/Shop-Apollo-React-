@@ -70,8 +70,6 @@ class ProductPage extends React.Component{
                                     case this.state.ColorPick:
                                     case this.state.SizePick:
                                     case JSON.stringify(this.props.data.attributes)==='[]':
-                                    case JSON.stringify(this.props.data.attributes)!=='[]'
-                                    &&this.props.data.attributes[0].id==='Capacity':
                                      return   <button
                                                 onClick={()=> {
                                                 window.localStorage.setItem(this.props.data.id, JSON
