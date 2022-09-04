@@ -43,7 +43,8 @@ class CartPage extends React.Component{
                     <div className='scroller'>
                         {this.props.data.map(el=> JSON.parse(el)).map(el=>(
                                 <CartWrapper key={el.id}>
-                                    <Product handleQuantityChange={this.props.handleQuantityChange}
+                                    <Product update={this.props.update}
+                                             handleQuantityChange={this.props.handleQuantityChange}
                                              data={this.props.data}
                                              CurrencyIndex={this.props.CurrencyIndex} key={el.id} el={el}/>
                                 </CartWrapper>

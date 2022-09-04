@@ -73,7 +73,7 @@ class ProductPage extends React.Component{
                                      return   <button
                                                 onClick={()=> {
                                                 window.localStorage.setItem(this.props.data.id, JSON
-                                                    .stringify(this.props.data));this.props.update()
+                                                    .stringify(this.props.data));this.props.update();
                                                     }} className='add-to-cart'>
                                                         ADD TO CART
                                               </button>
