@@ -31,7 +31,6 @@ class CartWindow extends React.Component{
             QuantityClicker:[...this.state.QuantityClicker,quantity]
         })
     }
-
     render(){
         return(
             <div className='overlay'>
@@ -65,7 +64,9 @@ class CartWindow extends React.Component{
                             </h2>
                     </div>
                     <div className='cart-btns'>
-                        <button onClick={()=>this.CartHandleClick()} className='view-bag'>VIEW BAG</button>
+                        <button onClick={()=> {
+                            this.CartHandleClick();this.props.update()
+                        }} className='view-bag'>VIEW BAG</button>
                         <button className='checkout'>CHECK OUT</button>
                     </div>
                 </div>}

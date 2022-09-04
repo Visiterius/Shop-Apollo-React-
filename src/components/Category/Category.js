@@ -25,6 +25,22 @@ class Category extends React.Component {
         this.CartHandleClick = this.CartHandleClick.bind(this)
         this.AllHandleClick = this.AllHandleClick.bind(this)
         this.HandleUpdate = this.HandleUpdate.bind(this)
+        this.wrapperRef = React.createRef()
+        this.HandleClickOutside=this.HandleClickOutside.bind(this)
+    }
+
+    componentDidMount() {
+        document.addEventListener("mousedown", this.HandleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.HandleClickOutside);
+    }
+
+    HandleClickOutside(event) {
+        if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+            this.CurrHandleClick()
+        }
     }
 
     TechHandleClick(){
@@ -114,11 +130,12 @@ class Category extends React.Component {
                         </div>
                         {this.state.CurrencyClicked
                             &&
-                            <div className='currency-window'>
+                            <div className='currency-window' ref={this.wrapperRef}>
                                 {this.props.data.categories[0].products[0].prices.map(el=>el.currency.symbol)
                                     .map((el,index)=>
                                     (<button key={index}
-                                             onClick={()=>{this.CurrencyIndexClick(index);
+                                             onClick={()=>{
+                                                           this.CurrencyIndexClick(index);
                                                            this.CurrHandleClick();
                                                            this.CurrAnimationClick(el)}}
                                              id='curr-btns'>{el}

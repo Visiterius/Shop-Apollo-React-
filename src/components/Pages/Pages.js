@@ -12,9 +12,6 @@ class Pages extends React.Component{
             ProductState:null,
         }
     }
-    refresh = () => {
-        this.setState({});
-    }
     render() {
         return(
                <div>
@@ -53,7 +50,8 @@ class Pages extends React.Component{
 
                    {this.props.handle ? this.state.ProductState=null:null}
 
-                   {this.props.switch.CartClicked && <CartWindow CurrencyIndex={this.props.CurrencyIndex}
+                   {this.props.switch.CartClicked && <CartWindow update={this.props.update}
+                                                                 CurrencyIndex={this.props.CurrencyIndex}
                                                                  data={this.props.data}/>}
                 </div>
         )
